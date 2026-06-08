@@ -1,59 +1,92 @@
-# Pdflivre
+# 📄 PDF Livre
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.14.
+> **Edite, junte e extraia páginas de PDFs de forma 100% segura e offline no seu navegador.**
 
-## Development server
+[![Status](https://img.shields.io/badge/Status-MVP-blue.svg)]()
 
-To start a local development server, run:
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+[![Criador](https://img.shields.io/badge/Criador-Carlos_Freires-orange.svg)]()
+
+[![Angular](https://img.shields.io/badge/Angular-DD0031?style=flat&logo=angular&logoColor=white)]()
+
+## 🚀 Sobre o Projeto
+
+O **PDF Livre** é uma *Single Page Application* (SPA) open-source desenhada com um foco absoluto em **Performance, Experiência de Utilizador (UX) e Privacidade**.
+
+No mercado atual, a maioria das ferramentas de edição de PDF exige que o utilizador faça o *upload* de documentos sensíveis para servidores de terceiros. O PDF Livre resolve este problema de segurança processando os seus ficheiros **100% localmente no navegador (Client-Side)**. O seu PDF nunca abandona a sua máquina.
+
+Esta é a **Primeira Versão (MVP)** da plataforma, idealizada e arquitetada por **Carlos Freires**, aplicando os mais altos padrões da Engenharia de Software e *Frontend Architecture*.
+
+## ✨ Funcionalidades Principais
+
+* **✏️ Editor Visual (WYSIWYG):**
+    * **Texto:** Adicione texto dinâmico com *auto-sizing* inteligente e formatação completa (fontes, tamanho, cor).
+    * **Ocultar (Redact):** Esconda informações sensíveis utilizando tarjas configuráveis com suporte nativo a *EyeDropper* (Conta-Gotas) para mimetizar a cor do documento original.
+    * **Assinaturas:** Motor de desenho de alto desempenho otimizado para *Touchscreen*, *Mouse* e *Stylus*, gerando assinaturas suaves com curvas de Bézier e suporte a tintas azul e preta.
+    * **Imagens:** Inserção e redimensionamento visual de imagens genéricas no documento.
+* **🔗 Juntar PDFs (Merge):** Combine múltiplos ficheiros PDF num único documento utilizando uma interface drag-and-drop intuitiva.
+* **✂️ Extrair Páginas (Split):** Isole intervalos específicos de páginas para criar novos ficheiros segmentados.
+* **⚙️ Gestão de Páginas:** Rotacione, mova e exclua páginas individuais em tempo real.
+
+## 🛠️ Arquitetura e Stack Tecnológica
+
+A aplicação foi construída para garantir estabilidade a 60FPS mesmo com ficheiros pesados, isolando a interface gráfica do processamento de dados.
+
+* **Framework:** Angular (Standalone Components)
+* **Linguagem:** TypeScript (Tipagem Estrita)
+* **Reatividade:** Angular Signals (Para gestão de estado granular sem Zone.js *overhead*)
+* **Processamento de Bytes:** `pdf-lib` (Manipulação estrutural do ArrayBuffer via Web Workers)
+* **Renderização Visual:** `pdfjs-dist` e WebGL/Canvas API
+* **UI/UX:** Padrões *Glassmorphism*, *CSS Grid* dinâmico e suporte integral Mobile-First.
+
+## 💻 Como Executar Localmente
+
+### Pré-requisitos
+
+* [Node.js](https://nodejs.org/) (Versão 18 LTS ou superior recomendada)
+* NPM ou Yarn
+
+### Passo a Passo
+
+1. Clone o repositório para a sua máquina local:
 
 ```bash
-ng serve
+git clone [https://github.com/carlosfreires/pdflivre.git](https://github.com/carlosfreires/pdflivre.git)
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+1. Entre na diretoria do projeto:
 
 ```bash
-ng generate component component-name
+cd pdf-livre
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+1. Instale todas as dependências:
 
 ```bash
-ng generate --help
+npm install
 ```
 
-## Building
-
-To build the project run:
+1. Inicie o servidor de desenvolvimento:
 
 ```bash
-ng build
+npm start
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+1. Abra o seu navegador e acesse: **http://localhost:4200/**
 
-## Running unit tests
+## 🤝 Como Contribuir
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Sendo um projeto open-source, contribuições de toda a comunidade são muito bem-vindas! Para contribuir:
 
-```bash
-ng test
-```
+1. Faça um Fork do projeto
 
-## Running end-to-end tests
+1. Crie uma Branch para a sua Feature (git checkout -b feature/IdeiaIncrivel)
 
-For end-to-end (e2e) testing, run:
+1. Faça Commit das suas alterações (git commit -m 'feat: Adiciona uma Ideia Incrível')
 
-```bash
-ng e2e
-```
+1. Faça Push para a Branch (git push origin feature/IdeiaIncrivel)
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+1. Abra um Pull Request detalhando o que foi alterado.
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+[^1]: Certifique-se de manter o padrão de código estabelecido no projeto e focar-se na performance do cliente (Client-Side processing).[^1]

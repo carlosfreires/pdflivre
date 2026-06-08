@@ -1,13 +1,47 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="utf-8">
-  <title>Pdflivre</title>
+  
+  <title>PDF Livre - Editor Rápido e Seguro</title>
+  <meta name="description" content="Edite, junte e extraia páginas de PDFs de forma 100% segura. Todo o processamento é feito localmente no seu navegador.">
+  <meta name="keywords" content="pdf, editor, juntar pdf, extrair pdf, offline, segurança">
+  <meta name="author" content="PDF Livre">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  
+  <meta name="theme-color" content="#0f172a">
+  
   <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <meta property="og:title" content="PDF Livre - Edição Segura no Browser">
+  <meta property="og:description" content="Nenhum ficheiro é enviado para a nuvem. Edite os seus PDFs com máxima privacidade e performance.">
+  <meta property="og:type" content="website">
+
+  <style>
+    body, html { margin: 0; padding: 0; width: 100%; height: 100%; background-color: #0f172a; }
+    .app-loading-screen {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      height: 100vh; width: 100vw; font-family: system-ui, -apple-system, sans-serif; color: #ffffff;
+    }
+    .spinner {
+      width: 40px; height: 40px; border: 4px solid rgba(255, 255, 255, 0.1);
+      border-left-color: #3b82f6; border-radius: 50%;
+      animation: spin 1s linear infinite; margin-bottom: 20px;
+    }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    .loading-text { font-weight: 500; letter-spacing: 0.5px; opacity: 0.9; }
+  </style>
 </head>
 <body>
-  <app-root></app-root>
+  
+  <app-root>
+    <div class="app-loading-screen">
+      <div class="spinner"></div>
+      <div class="loading-text">A iniciar o espaço de trabalho...</div>
+    </div>
+  </app-root>
+
 </body>
 </html>
