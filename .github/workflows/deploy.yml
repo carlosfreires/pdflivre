@@ -1,0 +1,57 @@
+name: Deploy PDF Livre to GitHub Pages
+
+# Dispara a esteira apenas quando houver alterações na branch 'prod'
+on:
+  push:
+    branches:
+      - prod
+
+# Permissões necessárias para o GitHub Action publicar a página
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Previne que múltiplos deploys concorrentes se atropelem
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js (Ambiente de Build)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Versão LTS recomendada
+          cache: 'npm'
+
+      - name: Instalar Dependências (Clean Install)
+        run: npm ci
+
+      - name: Build da Aplicação Angular (Produção)
+        # OTIMIZAÇÃO CRÍTICA: O GitHub Pages hospeda num subdiretório (seu-usuario.github.io/nome-do-repo).
+        # O parâmetro --base-href altera o index.html na hora da compilação para apontar os assets corretamente.
+        run: npx ng build --configuration production --base-href /pdflivre/
+
+      - name: Upload do Artefato Angular
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # NOTA ARQUITETURAL: No Angular 17/18, o output do build costuma ir para 'dist/nome-do-projeto/browser'.
+          # Se o seu output for diferente, ajuste o caminho abaixo.
+          path: './dist/pdflivre/browser'
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Publicar no GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
